@@ -1,8 +1,11 @@
+import java.util.*;
 import java.util.function.*;
+import java.util.stream.*;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
+
     public static void main(String[] args) {
 
         //Анонимный предикат
@@ -62,5 +65,33 @@ public class Main {
 
         System.out.println(supplierAnonim.get());
         System.out.println(supplierLambda.get());
+
+        System.out.println();
+
+        System.out.println("-----------------Stream and Optional HW---------------------");
+
+
+        //ДЗ по Stream
+
+        List<TestObject> testObjects = new ArrayList<>(List.of(new TestObject("F", 183), new TestObject("X", 176),
+                new TestObject("A", 192)));
+
+        Comparator<TestObject> comparator = Comparator.comparing(TestObject::getHeight);
+
+        BiConsumer<TestObject, TestObject> biConsumer = (o1, o2) -> {
+            System.out.println("Минимальный челик: " + o1);
+            System.out.println("Максимальный челик: " + o2);
+        };
+
+        MinMaxMethod.findMinMax(testObjects.stream(), comparator, biConsumer);
+
+        List<Integer> numverslist = List.of(-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        EvenNumbersMethod.toReturnEvenNumbers(numverslist);
+
+        List<Integer> emptyList = new ArrayList<>();
+        EvenNumbersMethod.toReturnEvenNumbers(emptyList);
+
     }
+
+
 }
